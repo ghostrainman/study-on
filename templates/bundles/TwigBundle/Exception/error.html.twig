@@ -1,0 +1,17 @@
+{# templates/bundles/TwigBundle/Exception/error.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Ошибка {{ status_code }}{% endblock %}
+
+{% block body %}
+    <div class="container py-5 text-center">
+        <h1 class="display-1 text-danger">{{ status_code }}</h1>
+        <h2 class="mb-4">{{ status_text|default('Произошла ошибка') }}</h2>
+
+        <div class="mb-4">
+            {% include 'bundles/TwigBundle/Exception/error' ~ status_code ~ '.html.twig' ignore missing %}
+        </div>
+
+        <a href="{{ path('app_home') }}" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+{% endblock %}

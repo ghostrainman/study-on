@@ -9,6 +9,15 @@ up:
 down:
 	@${COMPOSE} down
 
+encore_dev:
+	@${COMPOSE} run node yarn encore dev
+
+encore_prod:
+	@${COMPOSE} run node yarn encore production
+
+encore_watch:
+	@${COMPOSE} run node yarn encore dev --watch
+
 clear:
 	@${CONSOLE} cache:clear
 
@@ -21,6 +30,14 @@ migrate:
 fixtload:
 	@${CONSOLE} doctrine:fixtures:load
 
-# В файл local.mk можно добавлять дополнительные make-команды,
-# которые требуются лично вам, но не нужны на проекте в целом
+yarn_install:
+	@${COMPOSE} run node yarn install
+
+clear_prod:
+	@${PHP} bash -c "APP_ENV=prod php bin/console cache:clear"
+	@${PHP} bash -c "APP_ENV=prod php bin/console cache:warmup"
+
+clear_dev:
+	@${PHP} bash -c "APP_ENV=dev php bin/console cache:clear"
+	@${PHP} bash -c "APP_ENV=dev php bin/console cache:warmup"
 -include local.mk
