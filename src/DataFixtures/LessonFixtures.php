@@ -6,9 +6,9 @@ use App\Entity\Course;
 use App\Entity\Lesson;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-//use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class LessonFixtures extends Fixture
+class LessonFixtures extends Fixture implements DependentFixtureInterface
 {
     public const LESSONS = [
         [
@@ -74,12 +74,18 @@ class LessonFixtures extends Fixture
             $lesson->setContent($data['content']);
             $lesson->setNumber($data['number']);
 
-            // Получаем курс из фикстур
             $lesson->setCourse($this->getReference($data['course'], Course::class));
 
             $manager->persist($lesson);
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            CourseFixtures::class,
+        ];
     }
 }

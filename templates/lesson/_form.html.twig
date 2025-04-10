@@ -1,4 +1,30 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="mb-3">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+
+        {% for error in form.name.vars.errors %}
+            <div class="form-error-message text-danger small">{{ error.message }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.content) }}
+        {{ form_widget(form.content) }}
+
+        {% for error in form.content.vars.errors %}
+            <div class="form-error-message text-danger small">{{ error.message }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.number) }}
+        {{ form_widget(form.number) }}
+
+        {% for error in form.number.vars.errors %}
+            <div class="form-error-message text-danger small">{{ error.message }}</div>
+        {% endfor %}
+    </div>
+
+    <button class="btn btn-primary">Сохранить</button>
 {{ form_end(form) }}

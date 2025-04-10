@@ -35,7 +35,7 @@ class Course
     /**
      * @var Collection<int, Lesson>
      */
-    #[ORM\OneToMany(targetEntity: Lesson::class, mappedBy: 'course')]
+    #[ORM\OneToMany(targetEntity: Lesson::class, mappedBy: 'course', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $lessons;
 
     public function __construct()

@@ -12,9 +12,15 @@ class CourseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('code')
-            ->add('description')
+            ->add('name', null, [
+                'label' => 'Название',
+            ])
+            ->add('code', null, [
+                'label' => 'Код',
+            ])
+            ->add('description', null, [
+                'label' => 'Описание',
+            ])
         ;
     }
 

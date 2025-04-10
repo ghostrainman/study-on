@@ -1,4 +1,33 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<div class="mb-3">
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+
+    {% for error in form.name.vars.errors %}
+        <div class="form-error-message text-danger small">{{ error.message }}</div>
+    {% endfor %}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.code) }}
+    {{ form_widget(form.code, {'attr': {'class': 'form-control'}}) }}
+
+    {% for error in form.code.vars.errors %}
+        <div class="form-error-message text-danger small">{{ error.message }}</div>
+    {% endfor %}
+</div>
+
+
+<div class="mb-3">
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+
+    {% for error in form.description.vars.errors %}
+        <div class="form-error-message text-danger small">{{ error.message }}</div>
+    {% endfor %}
+</div>
+
+<button class="btn btn-primary">Сохранить</button>
+
 {{ form_end(form) }}
